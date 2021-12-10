@@ -1,6 +1,8 @@
 # Databases
 SQL Queries from Databases
 
+All problems, questions and answers are uploaded with Word docs.
 
 To Do:
-- add all problem sets to repo
+- upload the sql files
+- upload term project
