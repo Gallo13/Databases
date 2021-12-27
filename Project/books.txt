@@ -1,0 +1,45 @@
+31	The House in The Cerulean Sea	398	4
+19	She Who Became the Sun	414	4
+28	The Good Earth	416	5
+34	Hadoop The Definitive Guide	727	3
+39	The Phantom of the Opera	288	4
+23	The Song of Achilles	378	4
+40	The Mathematics of Ciphers: Number Theory and RSA Cryptography	1034	3
+32	Arduino Cookbook 2/E	699	4
+29	The Rise of Kyoshi	336	5
+1	The Shadow of Kyoshi	352	5
+22 	Wicked: The Life and Times of The Wicked Witch of the West	432	3
+26	The Brief and Wonderous Life of Oscar Wao	339	3
+2	The Epic Crush of Genie Lo	310	3
+35	Game of Thrones (Game of Thrones Serries #1)	694	3
+13	How Winter Began	198	2
+43	A Seperate Peace	204	3
+36	A Clash of Kings (Game of Thrones Serries #2)	761	3
+18	Circe	336	4
+10	Operating Systems Internals and Design Principles	732	2
+11	Data Structures, Algorithms, and Applications in C++ 2/E	792	1
+24	The Priory of the Orange Tree	830	NA
+21	A Christmas Carol	107	4
+17	Throne of Glass (Throne of Glass Series #1)	432	3
+9	Kingdom of Ash (Throne of Glass Series #7)	992	4
+6	Queen of Shadows (Throne of Glass Series #4)	672	4
+27	Heir of Fire (Throne of Glass Series #3)	592	4
+42	Empire of Storms (Throne of Glass Series #5)	720	4
+30	Crown of Midnight (Throne of Glass Series #2)	777	4
+33	The Assassin's Blade (Throne of Glass Series #8)	464	NA
+38	The Crucible	152	3
+15	Harry Potter and the Half Blood Prince	652	3
+37	Harry Potter and the Sorcerer's Stone	312	3
+41	Sei Personaggi In Cerca D'autore	132	4
+25	La Mandragola	72	4
+8	The Oedipus Cycle: Oedipus Rex, Oedipus at Colonus, Antigone	272	4
+14	Ultra: The Underworld of Italian Football	432	4
+5	The Glass Menagerie	105	2
+16	A Streetcar Named Desire	192	2
+7	The Taming of the Shrew	335	3
+20	A Tree Grows in Brooklyn	493	2
+3	C++ How to Program 10/E	1034	3
+4	Fundamentals of Data Structures in C++ 2/E	694	2
+12	Introduction to Modern Cryptograph 2/E	583	3
+44	Robert and Elizabeth Browning an Anthology	144	3
+45	Leroy Neiman: An American in Paris	153	5

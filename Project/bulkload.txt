@@ -1,0 +1,50 @@
+/*Note: In order for MySQL to bulk load a table, the data must be in this folder:
+C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/
+
+Note: There are some intentional errors in this data.  And some omissions. */
+
+
+load data infile 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/books.txt' 
+into table books
+fields terminated by '\t'
+lines terminated by '\r\n';
+
+load data infile 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/authors.txt' 
+into table authors
+fields terminated by '\t'
+lines terminated by '\r\n';
+
+load data infile 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/book_author.txt' 
+into table book_author
+fields terminated by '\t'
+lines terminated by '\r\n';
+
+load data infile 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/publisher.txt' 
+into table publisher
+fields terminated by '\t'
+lines terminated by '\r\n';
+
+load data infile 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/book_publisher.txt' 
+into table book_publisher
+fields terminated by '\t'
+lines terminated by '\r\n';
+
+load data infile 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/book_courses.txt' 
+into table book_courses
+fields terminated by '\t'
+lines terminated by '\r\n';
+
+load data infile 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/genre.txt' 
+into table genre
+fields terminated by '\t'
+lines terminated by '\r\n';
+
+load data infile 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/book_genre.txt' 
+into table book_genre
+fields terminated by '\t'
+lines terminated by '\r\n';
+
+load data infile 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/book_setting.txt' 
+into table book_setting
+fields terminated by '\t'
+lines terminated by '\r\n';

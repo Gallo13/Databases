@@ -1,0 +1,48 @@
+1	Nonfiction
+2	Fiction
+3	Action and Adventure
+4	Aleternate History
+5	Anthology
+6	Children's
+7	Classics
+8	Comic Book
+9	Coming-of-Age
+10	Crime
+11	Drama
+12	Fairytale
+13	Fantasy
+14	Graphic Novel
+15	Historical Fiction
+16	Horror
+17	Mystery
+18	Poetry
+19	Romance
+20	Satire
+21	Science Ficiton
+22	Short Story
+23	Young Adult
+24	Art/Architecture
+25	Autobiography
+26	Biography
+27	Business/Economics
+28	Cookbook
+29	Dictionary
+30	History
+31	Math
+32	Philosophy
+33	Religious
+34	Textbook
+35	Science
+36	Sports
+37	Gothic
+38	Dark Academia
+39	LGBTQ
+40	Feel Good
+41	Magical Realism
+42	Morality
+43	Mythology
+44	Retelling
+45	Realism	
+46	Play
+47	Holiday
+48	Comedy

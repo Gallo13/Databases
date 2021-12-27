@@ -1,0 +1,44 @@
+1	Tom	White
+2	Madline	Miller
+3	Gaston	Leroux
+4	Pearl S.	Buck
+5	Shelly Parker	Chan
+6	TJ	Kune
+7	Sara J.	Maas
+8	John	Steinbeck
+9	George	Orwell
+10	Junto	Diaz
+11	F.C.	Yee
+12	Samantha	Shannon
+13	George R.R.	Martin
+14	John	Knowles
+15	F. Scott	Fitzgerald
+16	William	Shakespear
+17	Charles	Dickens
+18	J.K.	Rowling
+19	Louis	Lowry
+20	Gregory	Maguire
+21	Tennessee	Williams
+22	Michael	Margolis
+23	S.C.	Coutinho
+24	Joy	Castro
+25	William	Stallings
+26	Samantha	Shannon
+27	Arthur	Miller
+28	Luigi	Pirandello
+29	Niccolo'	Machiavelli
+30	Sophocles	NULL
+31	Tobias	Jones
+32	Betty	Smith
+33	Jonathan	Katz
+34	Yehuda	Lindell
+35	Ellis	Horowitz
+36	Sartaj	Sahni
+37	Dinesh P.	Mehta
+38	Emily Barret	Browning
+39	Paul	Deitel
+40	Harvey	Deitel
+41	Christopher	Stoll
+44	Akira	Toriyama
+45	Robert	Browning
+46	Leroy	Neiman

@@ -1,0 +1,25 @@
+14	TOR
+15	Simon and Shuster Enriched Classics
+13	O'Reily
+20	Barnes and Noble Classics
+1	HarperCollins Publishers
+19	A K Peters
+4	Bloomsbury Publishing
+9	Pearson
+5	Silicon Press
+2	Amulet
+18	Viking
+16	Penguin Plays
+8	CreateSpace Publishing
+7	Head of Zeus
+3	HarperPerennial Modern Classics
+6	Barnes&Noble Shakespeare
+12	New Directions Publishing
+17	CRC Press
+10	Dark Horse
+21	Jarrold Colour Publishing
+22	Harry N. Abrams
+23	Random House
+24	Nebraska
+25	Riverhead Books
+26	Mariner Books
