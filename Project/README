@@ -1,1 +1,6 @@
-insert
+This is my final project for Databases. It is a database of my bookshelf. Included is:
+
+create: creates tables and database with the data types, primary keys and foreign keys
+bulkload: loads all the data by bulkloading. To bulk load go to C://ProgramData and insert tables below into Uploads then run this script in MySQL.
+books: bID (PK), title, pages, rating
+authors: 
