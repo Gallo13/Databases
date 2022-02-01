@@ -1,0 +1,71 @@
+1)	Exercise 3.3.1 on page 92
+    a.	R(A, B, C, D) with FD’s ABC, CD, and DA.
+        A+=A, B+=B, C+=CD, D+=DA
+        FD’s violating BCNF: 
+    b.	R(A, B, C, D) with FD’s BC, and BD.
+        ABABCD, AB key, AB=prime attribute, 
+        FD violating BCNF: CD
+        Decomposition:
+	        R1(ABC) -- > ABC
+	        R2(CD) -- > CD
+    c.	R(A, B, C, D) with FD’s ABC, BCD, CDA and ADB.
+AB+=ABCD, BD+=BCDA, CD+=CDAB, AD+=ADBC
+BC+=(ABCD), CD+=(ABCD), AD+=(ABCD)
+R(ABCD) is in BCNF already.
+d.	R(A, B, C, D) with FD’s AB, BC, CD and DA.
+e.	R(A, B, C, D) with FD’s ABC, DEC, and BD.
+A+=A, B+=BD, C+=C, D+=D, E+=E
+FD’s violating BCNF: ABC, DEC, BD
+Decomposition: 
+R1(ABC) -- > (ABC), AB=key -- >  ABC in BCNF
+R2(BD) -- > (BD) B=key -- >  BD in BCNF
+R3(DEC) -- >  (DEC) DE=key DE C in BCNF
+Decomposition is: R1(ABC), R2(BD) and R3(DEC)
+f.	R(A, B, C, D) with FD’s ABC, CD, DB and DE.
+AB+= ABCDE, C+=CDBE, D+=DBE
+Violation: CD, DE
+Decomposition:
+	R1(ABC) -- > ABC
+	R2(CD)  -- >CD
+	R3(BDE) -- > DBE
+2)	R(A, B, C, D, E) with FD’s A  B, C  D
+Closures: AC+=ABCD
+Violation:
+3)	R = (A, B, C, D, E) with FDs A  BC, CD  E, B  D, E  A
+Closures: A+BCDEA -- > A+=ABCDE
+4)	R = (A, B, C, D, E) with FDs ACD, BCE and EB
+Closures: A+=CDBE -- > BCDE
+5)	R = (A, B, C, D, E) with FDs AB, CDE
+Closures: AB
+	   CDE
+6)	R = (A, B, C, D, E) with FDs ABCDE, EFGH, IJ, AIK and ALM
+Closures: A+=BCDEIJKLM
+	   E+FGH
+                 AE+=ABCDEFGHIJKL
+7)	R = Student(SID, class club)
+Real world rules: Classes and clubs have nothing to do with each other
+List of all mvds
+Decompose Student using 4NF algorithm
+8)	Let Drinkers = (name, address, phones, beers)
+With FDs: name  address
+And MVDs: name  phones
+                      name  beers
+i.e. A drinker’s phones are independent of the beers they like. So each of a drinker’s hones appears with each of their beers
+List all of the mvds
+	name phones, name beers
+	Key: {name, phones, beers}
+Decompose drinkers using the 4NF algorithm
+	Nameaddress
+	Drinker1(name,address) -- > dependency = nameaddress
+	Drinker2(name, ohones, beers) -- > mvds: name phones and name beeers -- > 
+no FDs
+MVD name phones and namebeers decompose to drinker3(name,phones) and 
+drinker4(name, beers)
+9)	Let Students = (Snum, address, Cnum, club)
+With FD: Snum  address
+And MVDs: Snum  Cnum
+	      Snum club
+Where student Snum may take any course Cnum and belong to any club
+i.e. Courses taken by a student are independent of the clubs the student joins. So each of a students courses appears with each of her/his clubs.
+List all of the MVDs.
+Decompose students using the 4NF algorithm.
