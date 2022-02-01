@@ -1,0 +1,152 @@
+1.	Find the names and partner's names of all hamsters who have partners of the same gender. Note: A hamster may have many partners who can be either gender. Sort by gender, then by name within each gender.  Alex and King are an example.
+    
+    SELECT DISTINCT name, gender
+    FROM hamster, partner
+    WHERE ID IN
+    (
+      SELECT ID1
+      FROM partner
+      WHERE gender = gender
+    )
+    AND ID IN
+    (
+      SELECT ID2
+      FROM partner
+      WHERE gender = gender
+    }
+    ORDER BY genderr, name;
+    
+    | name  | gender |
+    | :---: | :----: |
+    | Alex  | 0      |
+    | Grant | 0      |
+    | King  | 0      |
+    | Cathy | 1      |
+    | Trish | 1      |
+    
+2.	Find the names and partner's names of all hamsters who only have partners of the same gender. i.e. they have no partners with the opposite gender. Sort by gender, then by name within each gender.  Cathy and Amy are an example
+    
+    SELECT hamster.name, hamster.gender, hamster2.name, hamster2.gender
+    FROM hamster
+    INNER JOIN children ON hamster.ID = children.ID1
+    INNER JOIN hamster hamster2 ON hamster2.ID = children.ID2
+    WHERE
+    (
+      hamerster.ID = children.ID1 AND hamster2.ID = children.ID2
+    )
+    AND hamster.gender = hamster2.gender
+    ORDER BY hamster.gender, hamster.name;
+    
+    | name    | gender | name     | gender |
+    | :-----: | :----: | :------: | :----: |
+    | Alex    | 0      | Solomon  | 0      |
+    | Jack    | 0      | Alex     | 0      |
+    | Jack    | 0      | King     | 0      |
+    | Jesse   | 0      | Grant    | 0      |
+    | Solomon | 0      | Jack     | 0      |
+    | Cathy   | 1      | Beatrice | 0      |
+    | Trish   | 1      | Amy      | 1      |
+    
+3.	For every situation where hamster A has a child B, but we have no information about whether B has children (that is, B does not appear as an ID1 in the Children table), return A and B's names and gender. Sort by parent's gender then by parent's name within each gender.  Trish and Amy are an example.
+    
+    SELECT hamster.name, hamster.gender, hamster2.name, hamsterr2.gender
+    FROM hamster
+    INNER JOIN children ON hamster.ID = children.ID1
+    INNER JOIN hamster hamster2 ON hamster2.ID = children.ID2
+    WHERE
+    (
+      hamster.ID = children.ID! AND hamster2.ID = children.ID2
+    )
+    AND hamster2.ID NOT IN
+    (
+      SELECT DISTINCT ID1
+      FROM children
+    );
+    
+    | name  | gender | name     | gender |
+    | :---: | :----: | :------: | :----: |
+    | Trish | 1      | Amy      | 1      |
+    | Cathy | 1      | Beatrice | 1      |
+    | Alex  | 0      | Anne     | 1      |
+    | King  | 0      | Hester   | 1      |
+    
+4.	Find the names and gender of all hamsters who are not a child of any hamster in the lab (i.e. do not appear as ID2 in the Children table. Sort by gender, then by name within each gender. Donald is an example. Note: repeat of problem on the midterm exam
+    
+    SELECT DISTINCT name, gender
+    FROM hamster
+    WHERE ID NOT IN
+    (
+      SELECT ID1
+      FROM children
+    )
+    AND ID NOT IN
+    (
+      SELECT ID2
+      FROM children
+    )
+    ORDER BY gender, name;
+    
+    | name    | gender |
+    | :-----: | :----: |
+    | Donald  | NULL   |
+    
+5.	Find the names and gender of all hamsters who are not a parent of any hamster in the lab (i.e. do not appear as ID1 in the Children table. Sort by gender, then by name within each gender.  Amy is an example.
+    
+    SELECT name, gender
+    FROM hamster
+    WHERE ID NOT IN
+    (
+      SELECT ID1
+      FROM children
+    )
+    ORDER BY gender, name;
+    
+    | name      | gender |
+    | :-------: | :----: |
+    | Donald    | NULL   |
+    | Amy       | 1      |
+    | Anne      | 1      |
+    | Beattrice | 1      |
+    | Hester    | 1      |
+    
+6.	Find ID of all of the ancestors of the hamster whose ID is 109.
+ 
+    WITH RECURSIVE
+    Ancestor(a, d) AS (
+                        SELECT ID1 AS a, ID2 AS d
+                        FROM children
+                        UNION
+                        SELECT Ancestor.a, children.ID2 AS d
+                        FROM Ancestor, children
+                        WHERE Ancestor.d = children.ID1
+                      )
+     SELECT a FROM Ancestor WHERE d = '109';
+     
+     | a     |
+     | :---: |
+     | 103   | 
+     | 101   | 
+     | 113   | 
+     | 106   | 
+     
+7.	Find ID and name of all of the ancestors of the hamster whose name is Amy.
+    
+    WITH RECURSIVE
+    Ancestor(a, d) AS (
+                        SELECT ID1 AS a, ID2 AS d
+                        FROM children
+                        UNION
+                        SELECT Ancestor.a, children.ID2 AS d
+                        FROM Ancestor, children
+                        WHERE Ancestor.d = children.ID1
+                      )
+     SELECT DISTINCT a 
+     FROM hamster, Ancestor 
+     WHERE d = hamster.ID AND hamster.name = 'Amy';
+     
+     | a     |
+     | :---: |
+     | 103   | 
+     | 101   | 
+     | 113   | 
+     | 106   |
