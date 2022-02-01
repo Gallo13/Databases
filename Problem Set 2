@@ -1,0 +1,205 @@
+1-	Find the names of all reviewers who rated Gone with the Wind. 
+ 
+   SELECT DISTINCT name
+   FROM movie
+   INNER JOIN rating USING(mID)
+   INNER JOIN reviewer USING(rID)
+   WHERE title = 'Gone with the Wind';
+
+   | name           |
+   | :------------: |
+   | Sarah Martinez |
+   | Mike Anderson  |
+ 
+2-	For any rating where the reviewer is the same as the director of the movie, return the reviewer name, movie title, and number of stars. 
+ 
+   SELECT name, title, stars
+   FROM movie
+   INNER JOIN rating USING(mID)
+   INNER JOIN reviewer USING(rID)
+   WHERE director = name;
+   
+   | name           | title  | stars |
+   | :------------: | :----: | :---: |
+   | James Cameron  | Avatar | 5     |
+ 
+3-	Return all reviewer names and movie names together in a single list, alphabetized. (Sorting by the first name of the reviewer and first word in the title is fine; no need for special processing on last names or removing "The".) 
+  
+  SELECT title FROM movie
+  UNION
+  SELECT name FROM reviewer
+  ORDER BY name, title;
+  
+   | name title              |
+   | :---------------------: |
+   | Ashley White            |
+   | Avatar                  |
+   | Brittany Harris         |
+   | Christ Jackson          |
+   | Danciel Lewis           |
+   | E.T.                    |
+   | Elizabeth Thomas        |
+   | Gone with the Wind      |
+   | James Cameron           |
+   | Mike Anderson           |
+   | Raiders of the Lost Ark |
+   | Sarah Martinez          |
+   | Snow White              |
+   | The Sound of Music      |
+   | Titanic                 |
+ 
+4-	Find the titles of all movies not reviewed by Chris Jackson. 
+ 
+  SELECT title 
+  FROM movie
+  WHERE mID NOT IN
+  (
+   SELECT mID
+   FROM reviewer
+   INNER JOIN reviewer USING(rID)
+   WHERE name = 'Chris Jackson'
+  );
+  
+   | title              |
+   | :----------------: |
+   | Gone with the Wind |
+   | Star Wars          |
+   | Titanic            |
+   | Snow White         |
+   | Avatar             |
+ 
+5-	For all pairs of reviewers such that both reviewers gave a rating to the same movie, return the names of both reviewers. Eliminate duplicates, don't pair reviewers with themselves, and include each pair only once. For each pair, return the names in the pair in alphabetical order. 
+   
+   SELECT DISTINCT re1.name, re2.name
+   FROM rating r1, rating r2, reviewer re1, reviewer re2
+   WHERE r1.mID = r2.mID
+   AND r1.rID = re1.rID
+   AND r2.rID = re2.rID
+   AND re1.name < re2.name
+   ORDER BY re1.name, re2.name;
+   
+   | name             | name             | 
+   | :--------------: | :--------------: |
+   | Ashley White     | Chris Jackson    |
+   | Brittany Harris  | Chris Jackson    |
+   | Daniel Lewis     | Elizabeth Thomas |
+   | Elizabeth Thomas | James Cameron    |
+   | Mike Anderson    | Sarah Martinez   |
+ 
+6-	For each rating that is the lowest (fewest stars) currently in the database, return the reviewer name, movie title, and number of stars. 
+   
+   SELECT title, AVG(stars) AS average
+   FROM movie
+   INNER JOIN rating USING(mID)
+   GROUP BY average DESC, title;
+   
+   | name            | title                   | stars          |
+   | :-------------: | :---------------------: | :------------: |
+   | Sarah Matrinez  | Gone with the Wind      | 2              |
+   | Brittany Harris | The Sound of Music      | 2              |
+   | Brittany Harris | Raiders of the Lost Ark | 2              |
+   | Chris Jackson   | E.T.                    | 2              |
+ 
+7-	List movie titles and average ratings, from highest-rated to lowest-rated. If two or more movies have the same average rating, list them in alphabetical order. 
+   
+   SELECT name
+   FROM reviewer
+   INNER JOIN rating USING(rID)
+   GROUP BY rID
+   HAVING COUNT(*) >= 3;
+   
+   | title                   | average          |
+   | :---------------------: | :--------------: |
+   | Snow White              | 4.5              |
+   | Avatar                  | 4.0              |
+   | Raiders of the Lost Ark | 3.33333333333333 |
+   | Gone with the Wind      | 3.0              |
+   | E.T.                    | 2.5              |
+   | The Sound of Music      | 2.5              |
+ 
+8-	Find the names of all reviewers who have contributed three or more ratings. (As an extra challenge, try writing the query without HAVING or without COUNT.) 
+   
+   SELECT name
+   FROM reviewer
+   INNER JOIN rating USING(rID)
+   GROUP BY rID
+   HAVING COUNT(*) >= 3;
+   
+   | name            |
+   | :-------------: |
+   | Brittany Harris |
+   | Chris Jackson   |
+ 
+9-	Some directors directed more than one movie. For all such directors, return the titles of all movies directed by them, along with the director name. Sort by director name, then movie title. (As an extra challenge, try writing the query both with and without COUNT.) 
+   
+   SELECT title, director
+   FROM movie m1
+   WHERE (SELECT CDOUNT(*) FROM movie m2 WHERE m1.director = m2.director) > 1
+   ORDER BY director, title;
+   
+   | title                   | director         |
+   | :---------------------: | :--------------: |
+   | Avatar                  | James Cameron    |
+   | Titanic                 | James Cameron    |
+   | E.T.                    | Steven Spielberg |
+   | Raiders of the Lost Ark | Steven Spielberg |
+ 
+10-	Find the movie(s) with the highest average rating. Return the movie title(s) and average rating. Hint: you might think of it as finding the highest average rating and then choosing the movie(s) with that average rating. 
+    
+    SELECT title, AVG(stars) as AVERAGE
+    FROM movie
+    INNER JOIN rating USING(mID)
+    GROUP BY mID
+    HAVING average =
+    (
+     SELECT MAX(average_stars)
+     FROM
+     (
+      SELECT title, AVG(stars) as average_stars
+      FROM movie
+      INNER JOIN rating USING(mID)
+      GROUP BY mID
+     )
+    );
+    
+    | title      | average |
+    | :--------: | :-----: |
+    | Snow White | 4.5     |
+ 
+11-	Find the movie(s) with the lowest average rating. Return the movie title(s) and average rating. (Hint: This query may be more difficult to write in SQLite than other systems; you might think of it as finding the lowest average rating and then choosing the movie(s) with that average rating.) 
+    
+    SELECT title, AVG(stars) as AVERAGE
+    FROM movie
+    INNER JOIN rating USING(mID)
+    GROUP BY mID
+    HAVING average =
+    (
+     SELECT MIN(average_stars)
+     FROM
+     (
+      SELECT title, AVG(stars) as average_stars
+      FROM movie
+      INNER JOIN rating USING(mID)
+      GROUP BY mID
+     )
+    );
+    
+    | title              | average |
+    | :----------------: | :-----: |
+    | The Sound of Music | 2.5     |
+    | E.T.               | 2.5     |
+ 
+12-	For each director, return the director's name together with the title(s) of the movie(s) they directed that received the highest rating among all of their movies, and the value of that rating. Ignore movies whose director is NULL. 
+    
+    SELECT director, title, MAX(stars)
+    FROM movie
+    INNER JOIN rating USING(mID)
+    WHERE director IS NOT NULL
+    GROUP BY director;
+    
+    | director         | title                   | average |
+    | :--------------: | :---------------------: | :-----: |
+    | James Cameron    | Avatar                  | 5       | 
+    | Robert Wise      | The Sound of Music      | 3       |
+    | Steven Spielberg | Raiders of the Lost Ark | 4       |
+    | Victor Fleming   | Gone with the Wind      | 4       |
