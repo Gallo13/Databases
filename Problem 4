@@ -1,0 +1,124 @@
+Q1: Find the names of all professors who are not students but took at least one course.
+    
+    /* Profs who are students */
+    SELECT DISTINCT prof.pID, prof.lastname
+    FROM prof, student
+    WHERE prof.pID IN
+    (
+      SELECT sID
+      FROM student
+    )
+    ORDER BY pID;
+    
+    | pID   | lastname |
+    | :---: | :------: |
+    | 058   | Sarvello |
+    | 115   | Brugman  |
+    | 345   | Ahmed    |
+    | 798   | Schwartz |
+    | 987   | Cassidy  |
+    
+    /* Profs who are not students */
+    SELECT DISTINCT prof.pID, prof.lastname
+    FROM prof, student
+    WHERE pID NOT IN
+    (
+      SELECT sID
+      FROM student
+    )
+    ORDER BY pID;
+    
+    | pID   | lastname |
+    | :---: | :------: |
+    | 004   | Anders   |
+    | 204   | Domingo  |
+    | 454   | Sager    |
+    | 683   | Hu       |
+    | 837   | King     |
+    
+Q2: Find the sID and names of all students who are not in the CS department who took a CS course.  Also find the cnum and name the course and the secnum, term, and grade the student received.
+    
+    SELECT DISTINCT sID, firstname, lastname, se.cnum
+    FROM student st, report r, section se
+    WHERE st.dept = 'CS' AND st.sID = r.snum AND r.secnum = se.secnum AND se.cnum LIKE 'CSC%';
+ 
+    | sID   | lasttname | dept  | cnum    | name                                               | secnum | term  | grade |
+    | :---: | :-------: | :---: | :-----: | :------------------------------------------------: | :----: | :---: | :---: |
+    | 019   | Pierce    | GOVT  | CSC330  | Topics in Information Systems                      | 3456   | F18   | I     |
+    | 111   | Belailef  | ENG   | CSC111  | Introduction to Computing and Computer Programming | 6789   | F17   | A     |
+    | 111   | Belailef  | ENG   | CSC211  | Data Structures                                    | 2597   | F17   | A     |
+    | 111   | Belailef  | ENG   | CSC211  | Data Structures                                    | 5387   | F16   | B     |
+    | 111   | Belailef  | ENG   | CSC330  | Topics in Information Systems                      | 8702   | F18   | A     |
+    | 123   | Mutai     | GOVT  | CSC330  | Topics in Information Systems                      | 1234   | S16   | A     |
+    | 123   | Mutai     | GOVT  | CSC330  | Topics in Information Systems                      | 3456   | F18   | I     |
+    | 444   | Radcliffe | RUSS  | CSC211  | Data Structures                                    | 5387   | S16   | F     |
+    | 555   | Springer  | ENGL  | CSC211  | Data Structures                                    | 5387   | S16   | A     |
+    | 555   | Springer  | ENGL  | CSC228  | Introduction to Discrete Mathematics               | 4195   | S18   | I     |
+    | 777   | Belailef  | ENGL  | CSC228  | Introduction to Discrete Mathematics               | 4195   | S18   | A     |
+    | 777   | Belailef  | ENGL  | CSC231  | Microcomputers and assembly language               | 7777   | S18   | F     |
+    | 777   | Belailef  | ENGL  | CSC424  | Introduction to Database Systems                   | 4190   | S21   | I     |
+    | 777   | Belailef  | ENGL  | CSC715  | Database Theory                                    | 4195   | F21   | C     |
+    | 798   | Lincoln   | GOVT  | CSC211  | Data Structures                                    | 9023   | S21   | A     |
+    | 798   | Lincoln   | GOVT  | CSC733  | Natural Language Processing                        | 7777   | F18   | B     |
+    | 987   | Stewart   | PE    | CSC330  | Topics in Information Systems                      | 1234   | S16   | B     |
+    | 987   | Stewart   | PE    | CSC424  | Introduction to Database Systems                   | 4190   | F21   | A     |
+    | 987   | Stewart   | PE    | CSC715  | Database Theory                                    | 4195   | F21   | F     |
+
+Q3: Find the names of all students who have taken every CS course
+ 
+    SELECT firstname, lastname
+    FROM student
+    INNER JOIN report ON student.sID = report.snum
+    WHERE snum IN
+    (
+      SELECT secnum
+      FROM report
+      WHERE report.secnum LIKE 'CSC%'
+    );
+    
+    | firstname | lastname |
+    | :-------: | :------: |
+    |           |          |
+ 
+Q4: Find the names of all students all of whose grades are better than 'C'
+    
+    SELECT fistname, lastname
+    FROM student
+    WHERE sID IN
+    (
+      SELECT snum
+      FROM report
+      GROUP BY snum HAVING MAX(grade_ < 'C'
+    );
+    
+    | firstname | lastname |
+    | :-------: | :------: |
+    | Abraham   | Lincoln  |
+ 
+Q5: Find two students who each took at least two identical courses (possibly different sections) in the same department and who got the same grade in the lower-level course but different grades in the higher level course.
+    
+    
+    
+Q6: Find the course numbers and names of all courses taken by at least one student who has taken CSC424
+ 
+    SELECT c.cnum, c.name
+    FROM course c
+    WHERE c.cnum IN
+    (
+      SELECT s.cnum
+      FROM report r, section s
+      WHERE r.secnum = s.secnum AND r.term = s.term AND s.cnum = 'CSC424'
+    );
+    
+    | cnum   | name                             |
+    | :----: | :------------------------------: |
+    | CSC424 | Introduction to Database Systems |
+    | NULL   | NULL                             |
+
+Q7: Find all students who took two courses in the same department and got a better grade in the higher-level course
+
+Q8: Find all pairs of one professor and one student who each took at least two identical courses (possibly different secnums and different terms) in the same department and who got the same grade in the lower level course but different grades in the higher level course.
+Retrieve and print the pID of the prof, the sID of the student, their last names, the cnum, secnum, term, and grade of each of the courses they took.  
+e.g. in the current dataset, professor Ali and student Lincoln satisfy this query.
+    
+    
