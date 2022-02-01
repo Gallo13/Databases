@@ -1,0 +1,64 @@
+Page 71 Exercise 3.1.1: Consider a relation about people in the US, including their name, SSN, street address, city, state, ZIP code, area code, and phone number (7 digits). What FD’s would you expect to hold? What are the keys for the relation? To answer this question, you need to know something about the way these numbers are assigned. For instance, can an area code straddle two states? Can a ZIP code straddle two area codes? Can two people have the same SSN? Can they have the same address or phone number?
+  A)	Make a list of all functional dependencies.
+  SSN (PK) -> Name, Street_Address, City, State, ZIP, Area_Code (FK) , Phone_Number
+  Street_Address -> City, State, ZIP, Area_Code
+
+  B)	Can an area code straddle 2 states? ZIP -> State?
+	An area code can straddle 2 states if they are near each other on a boarder line.
+
+  C)	Can a ZIP straddle multiple Cities? ZIP -> City?
+	    A Zip can straddle multiple cities if they are near a border.
+
+  D)	Can a ZIP code straddle 2 area codes? ZIP -> Area_Code?
+	    A Zip code can straddle 2 area codes if there is a city that spans borders of states.
+
+Page 83 Exercise 3.2.1: Consider a relation with schema R(A, B, C, D) and FD’s  AB  C, C  D, D  A.
+  A)	What are all the nontrivial FD’s that follow from the given FD’s? You should restrict yourself to FD’s with single attributes on the right side.
+      A,B -> A (trivial)
+      A,B -> B (trivial)
+      A,B -> D
+      C  -> A 
+  
+  B)	What are all the keys of R?
+      keys (A,B) which is the PK
+  
+  C)	What are all the superkeys for R that are not keys
+      superkeys (A,B,C) and (A,B,D)
+      (A,B,C,D) is a trivial super key.  The set of all attributes is always a trivial superkey
+Page 83 Exercise 3.2.2: Repeat Exercise 3.2.1 for the following schemas and sets of FD’s:
+  i)	S(A, B, C, D) with FD’s A -> B, B -> C, and B -> D
+      a.	What are all the nontrivial FD’s that follow from the given FD’s? You should restrict yourself to FD’s with single attributes on the right side.
+          follow from: A -> B and B -> C so by transitivity A -> C
+                       A -> B and B -> D so by transitivity A -> D
+
+ 	        hence A -> A,B,C,D 	
+
+
+      b.	What are all the keys of R?
+          keys: A
+          
+      c.	What are all the superkeys for R that are not keys
+          superkeys: (A, B) and (A, B, C)  
+
+  ii)	T(A, B, C, D) with FD’s AB -> C, BC -> D, and CD -> A, and AD -> B
+      a.	What are all the nontrivial FD’s that follow from the given FD’s? You should restrict yourself to FD’s with single attributes on the right side.
+          follow from	A,B,C -> D,   B,C,D -> A,   A,C,D -> B,   A,B,D -> C  
+          
+      b.	What are all the keys of R?
+          keys: (A,B), (A,D), (B,C)  and (C,D)
+          
+      c.	What are all the superkeys for R that are not keys
+          keys: (A,B), (A,D), (B,C)  and (C,D)
+
+  iii)	U(A, B, C, D) with FD’s A -> B, B -> C, and C -> D, and D -> A
+        a.	What are all the nontrivial FD’s that follow from the given FD’s? You should restrict yourself to FD’s with single attributes on the right side.
+            follow from	A -> C,  A -> D,  B -> D,  B -> A,  C -> A,  C -> B,  D -> B,  D -> A
+                        A -> C and C -> B so by transitivity A -> B
+
+        b.	What are all the keys of R?
+            keys: A and B and C and D are all keys
+        c.	What are all the superkeys for R that are not keys
+            superkeys every combination of 2 attributes: (A,B), (A,C), (A,D), (B,C), (B,D), (D,C)
+                      every combination of 3 attributes: (A,B,C), (A,B,D), (A,C,D), (B,C,D
+                      all of the attributes  (A,B,C,D), the trivial superkey
+
