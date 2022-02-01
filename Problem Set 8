@@ -1,0 +1,12 @@
+Exercise 4.1.1. p. 138
+Exercise 4.1.1. Design a database for a bank, including information about customers and their accounts. Information about a customer includes their name, address, phone and SSN. Accounts have numbers, types (e.g., savings, checking) and balances. Also record the customer(s) who own an account. Draw the E/R diagram for this database. Be sure to include arrows where appropriate, to indicate the multiplicity of a relationship.
+ 
+ 
+
+Exercise 4.1.3 p.139
+Give an E/R diagram for a database recording information about teams, players, and their fans, including:
+1.	For each team, its name, its players, its team captain (one of its players), and the color of its uniform.
+2.	For each player, his/her name.
+3.	For each fan, his/her name, favorite teams, favorite players, and favorite color.
+	
+ 
